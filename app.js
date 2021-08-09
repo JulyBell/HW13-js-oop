@@ -1,13 +1,13 @@
 
 let dateArea = document.querySelector('#main');
-let timePattern;
+let timePattern = true;
 
 class Clock{
 	constructor(){
 
 	}
 
-	showDate(){	
+	render(){	
 		let date = new Date();
 		let hours = date.getHours();
 		hours < 10 ? hours = '0' + hours : hours = hours;
@@ -38,10 +38,8 @@ class Clock{
 }
 
 
-timePattern = true;
-
 let time = new Clock();
-setInterval(time.showDate, 1000);
+setInterval(time.render, 1000);
 time.toggle();
 
 
