@@ -1,13 +1,19 @@
-
 let dateArea = document.querySelector('#main');
-let timePattern = true;
 
 class Clock{
-	constructor(){
-
+	constructor(elem){
+		this.dateArea = elem;
+		this.timePattern = true;
+		this.dateArea.addEventListener('click', (e) => {
+			e.preventDefault();
+			if(e.target.tagName === 'P'){
+				this.toggle();
+			}
+		})
 	}
 
 	render(){	
+		
 		let date = new Date();
 		let hours = date.getHours();
 		hours < 10 ? hours = '0' + hours : hours = hours;
@@ -21,25 +27,24 @@ class Clock{
 		let longDate = `<p>Current date: ${hours} : ${minutes} : ${seconds}</p>`;
 		let shortDate = `<p>Current date: ${hours} : ${minutes}</p>`;
 		  
-		dateArea.innerHTML = timePattern === true ? longDate : shortDate;
+		
+		//this.dateArea.innerHTML = 'atata'
+		//this.dateArea.innerHTML = this.timePattern === true ? longDate : shortDate;
+		console.log(this.timePattern)
+		this.dateArea.innerHTML = this.timePattern === true ? longDate : shortDate;
 	}
 
 	toggle(){
-		document.querySelector('#main').addEventListener('click', (e) => {
-			e.preventDefault();
+
+		console.log('clicked');
+		this.timePattern = !this.timePattern;
 		
-			if(e.target.tagName === 'P'){
-				console.log('clicked');
-				timePattern = !timePattern;
-		
-			}
-		})
 	}
 }
 
 
-let time = new Clock();
-setInterval(time.render, 1000);
+let time = new Clock(dateArea);
+setInterval(time.render.bind(time), 1000);
 time.toggle();
 
 
