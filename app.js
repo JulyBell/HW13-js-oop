@@ -27,25 +27,21 @@ class Clock{
 		let longDate = `<p>Current date: ${hours} : ${minutes} : ${seconds}</p>`;
 		let shortDate = `<p>Current date: ${hours} : ${minutes}</p>`;
 		  
-		
-		//this.dateArea.innerHTML = 'atata'
-		//this.dateArea.innerHTML = this.timePattern === true ? longDate : shortDate;
 		console.log(this.timePattern)
 		this.dateArea.innerHTML = this.timePattern === true ? longDate : shortDate;
 	}
 
 	toggle(){
-
-		console.log('clicked');
-		this.timePattern = !this.timePattern;
 		
+		console.log('clicked');
+		this.timePattern = !this.timePattern;	
 	}
 }
 
 
 let time = new Clock(dateArea);
 setInterval(time.render.bind(time), 1000);
-time.toggle();
+
 
 
 
